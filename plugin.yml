@@ -1,0 +1,9 @@
+name: StromAbilitys
+version: 1.0.0
+api: 3.0.0
+author: ImAHappyDev
+main: StromAbilitys\Strom
+
+commands:
+  abilitys:
+    description: "§cGet Abilitys By: §bImAHappyDev"

@@ -1,0 +1,2 @@
+# StromAbilitys
+EffecDisabler, GrapplingHook, PrePearl

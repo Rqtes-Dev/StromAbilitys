@@ -84,13 +84,15 @@ class Strom extends PluginBase implements Listener {
 		if($item->getCustomName() == "§r§l§bPrePearl"){
 		  if(!isset($this->cooldownPrePearl[$player->getName()])){
 		  $this->cooldownPrePearl[$player->getName()] = time() + 90;
-		  $position = $player->getPosition();
+		  $data = $player->getPosition();
 		  $player->sendMessage("§aYou used the PrePearl in 10 seconds you will return to the place where you activated it");
-		  $this->getScheduler()->scheduleDelayedTask(new ClosureTask(function (int $currentTick) use ($position, $player): void {
-		    if($player->isOnline())
-		    $player->teleport($position);
+		  $this->getScheduler()->scheduleDelayedTask(new ClosureTask(static function (int $curentTick) use ($data, $player): void {
+		    if (!$player->isOnline()) {
+		      return;
+		      $player->teleport($data);
+		    }
 		    $player->sendMessage("§eYou returned to the place where you activated the PrePearl");
-		  }), 10 * 20);
+		  }), 100);
 		  }else if(time() < $this->cooldownPrePearl[$player->getName()]){
 		    $reaming = $this->cooldownPrePearl[$player->getName()] - time();
 		    $player->sendMessage("§cCooldown PrePearl: ".$reaming."s");
